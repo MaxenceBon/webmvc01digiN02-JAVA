@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+                      "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: taghead"></head>
+
+<body>
+	<div th:replace="fragments/menu :: tagmenu">  </div>  
+	<form th:action="@{/client/update}"     th:object="${clientForm}" method="post">
+         First Name:
+         <input type="text" th:field="*{prenom}" />    
+         <br/>
+         Last Name:
+         <input type="text" th:field="*{nom}" />     
+         <br/>
+         <input type="hidden" th:field="*{id}" /> 
+         <input type="submit" value="Update" />
+      </form>
+      <a th:href="@{/client/clients}">Retour</a>
+</body>
+</html>

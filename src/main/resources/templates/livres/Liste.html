@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+                      "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: taghead"></head>
+
+<body>
+	<div th:replace="fragments/menu :: tagmenu">  </div>  
+
+	<a th:href="@{/livre/add}">Ajout</a>
+	<hr/>
+	<table>
+		<thead>
+			<tr>
+			<th>Auteur</th>
+			<th>Titre</th>
+			<th>Emprunt</th>
+			<th colspan="2">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="livre : ${ livres }">
+			<td th:text="${ livre.auteur}"></td>
+			<td th:text="${ livre.titre }"></td>
+			<td><ul>
+			<li th:each="emprunt : ${ livre.empruntLivres }">
+				<span th:text="${emprunt.datedebut}"></span>
+			</li>
+			</ul></td>
+			<td><a th:href="@{/livre/delete/{id}(id=${livre.id})}">Delete</a></td>
+			<td><a href="#">Modif</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

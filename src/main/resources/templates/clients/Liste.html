@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+                      "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: taghead"></head>
+
+<body>
+	<div th:replace="fragments/menu :: tagmenu">  </div>  
+	<br/>
+	<a th:href="@{/client/add}">Ajout</a>
+	<hr/>
+	<table>
+		<thead>
+			<tr>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th >Emprunts</th>
+			<th colspan="2">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="client : ${ clients }">
+				<td th:text="${ client.nom }"></td>
+				<td th:text="${ client.prenom }"></td>
+				<td>
+					<ul>
+						<li th:each="e : ${ cr.findByEmprunt(client.id) }">
+							<span th:text="${e.datedebut}">
+							</span>
+							<ul>
+							<li th:each="l : ${ er.findByLivre(e) }">
+								<span th:text='${l.auteur+"-"+l.titre}'>
+							</span>
+							</li>
+							</ul>
+						</li>
+					</ul>
+				</td>
+			<td><a th:href="@{/client/delete/{id}(id=${client.id})}">Delete</a></td>
+			<td><a th:href="@{/client/update/{id}(id=${client.id})}">Update</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
