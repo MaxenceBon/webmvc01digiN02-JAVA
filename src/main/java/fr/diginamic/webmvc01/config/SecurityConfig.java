@@ -77,6 +77,7 @@ implements WebMvcConfigurer {
                 .antMatchers("/api/users").permitAll()
                 .antMatchers("/token").permitAll()
                 .antMatchers("/user").authenticated()
+                .antMatchers("/api/client").permitAll()
                 //.antMatchers("/Professeurs/**").permitAll()
                 .antMatchers("/client/**").permitAll()
                 .antMatchers(
